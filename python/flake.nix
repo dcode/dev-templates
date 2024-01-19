@@ -1,7 +1,6 @@
 {
   description = "A Nix-flake-based Python development environment";
-
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*.tar.gz";
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
 
   outputs = { self, nixpkgs }:
     let
@@ -13,8 +12,8 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = with pkgs; [ python311 virtualenv ] ++
-            (with pkgs.python311Packages; [ pip ]);
+          packages = with pkgs; [ python312 virtualenv ] ++
+            (with pkgs.python312Packages; [ pip ]);
         };
       });
     };
